@@ -2,6 +2,14 @@ const resultDiv = document.querySelector(".resultDiv");
 const inputField = document.querySelector("#city-name-input");
 const inputBtn = document.querySelector("#submit-btn");
 
+window.addEventListener("DOMContentLoaded", () => {
+   const savedData = localStorage.getItem("lastWeather");
+   if (savedData) {
+      const {wether, cityData} = JSON.parse(savedData);
+      setResult(wether, cityData);
+   }
+});
+
 function setResult(weather, cityData) {
     const temp = Math.round(weather.current.temperature_2m);
     const feelsLike = Math.round(weather.current.apparent_temperature);
@@ -21,6 +29,7 @@ function setResult(weather, cityData) {
             <p><strong>Швидкість вітру:</strong> ${wind} км/год</p>
         </div>
     `;
+    localStorage.setItem("lastWeather", JSON.stringify({weather, cityData}))
 }
 
 async function getData(cityName) {

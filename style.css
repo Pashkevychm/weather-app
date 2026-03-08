@@ -1,30 +1,192 @@
 
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* --- Global & Background --- */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* Main background gradient matching the image */
+    background: linear-gradient(to bottom, #94d1ff, #388ced);
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* --- Header --- */
 header {
-background: #D9D9D9;
-display: flex;
-justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end; /* Pushes icon to the right */
+    box-sizing: border-box;
+}
+
+header h1 {
+    display: none; /* Hidden to match the visual mockup */
+}
+
+header img {
+    width: 60px;
+    height: 60px;
+    background: #0d47a1;
+    border-radius: 50%;
+    object-fit: contain;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 main {
+    width: 100%;
+    max-width: 800px;
     display: flex;
-    display-direction: column;
-align-items: center;
-justify-content: center;
-gap: 30px;
-heig
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-#input-data {
-    display: flex
+/* --- Search Bar --- */
+.inputData {
+    width: 100%;
+    background: #e0e0e0;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    /* 3D pill effect */
+    border: 2px solid #9e9e9e;
+    box-shadow: 0 6px 0px #9e9e9e, 0 15px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
 }
 
-#city-name-input{
-    background: #D9D9D9;
-    box-shadow: 0px 10px 1px rgba(0, 0, 0, 0.53);
-    border-radius: 274.5px;
+.inputData input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    color: #333;
+    padding: 5px 10px;
 }
 
-#submit-btn {
-    background-color: blue;
+.inputData button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.inputData button img {
+    width: 25px !important; /* Overrides the 5px inline HTML style */
+}
+
+/* --- Results Container (Grid Layout) --- */
+.resultDiv {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Splits into left/right panels */
+    grid-template-rows: auto 1fr;
+    gap: 30px;
+    position: relative;
+}
+
+/* Handles the "Searching..." text alignment */
+.resultDiv:not(:has(.weather-main)) {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 500;
+}
+
+/* Right Panel Blue Background (Created dynamically) */
+.resultDiv:has(.weather-main)::after {
+    content: '';
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    background: linear-gradient(135deg, #6bc0ff, #298bed);
+    border-radius: 40px;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2), 0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 0;
+}
+
+/* --- Left Panel (Cat Image) --- */
+.weather-main {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    /* Replace this URL with your local cat image path if needed */
+    background-image: url('https://investor-ua.com/wp-content/uploads/2021/01/pogoda562-668x668.jpg'); 
+    background-size: cover;
+    background-position: center;
+    border-radius: 60px;
+    min-height: 450px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 40px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    border: 3px solid #b0bec5;
+}
+
+.temperature {
+    background: #e0e0e0;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #212121;
+    /* 3D shadow effect */
+    box-shadow: 0 6px 0px #8b8b8b, 0 15px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid #b0bec5;
+}
+
+/* --- Right Panel Content --- */
+.city-name {
+    grid-column: 2;
+    grid-row: 1;
+    z-index: 1;
+    background: #e0e0e0;
+    margin: 40px 40px 10px 40px;
+    padding: 20px;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    box-shadow: 0 6px 0px #8b8b8b, 0 15px 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid #b0bec5;
+}
+
+.weather-details {
+    grid-column: 2;
+    grid-row: 2;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 0 20px 40px 20px;
+}
+
+.weather-details p {
+    background: #e0e0e0;
+    margin: 0;
+    padding: 15px 20px;
+    width: 65%;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 1rem;
+    color: #212121;
+    box-shadow: 0 6px 0px #5c5c5c, 0 10px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid #90a4ae;
+}
+
+.weather-details p strong {
+    font-weight: 500;
 }
