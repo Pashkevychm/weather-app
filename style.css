@@ -1,0 +1,30 @@
+
+
+header {
+background: #D9D9D9;
+display: flex;
+justify-content: space-between;
+}
+
+main {
+    display: flex;
+    display-direction: column;
+align-items: center;
+justify-content: center;
+gap: 30px;
+heig
+}
+
+#input-data {
+    display: flex
+}
+
+#city-name-input{
+    background: #D9D9D9;
+    box-shadow: 0px 10px 1px rgba(0, 0, 0, 0.53);
+    border-radius: 274.5px;
+}
+
+#submit-btn {
+    background-color: blue;
+}
