@@ -10,34 +10,19 @@ window.addEventListener("DOMContentLoaded", () => {
    }
 });
 
-function getBackgroundImage(weatherCode) {
-    // 0: Ясне небо (Сонячно)
-    if (weatherCode === 0) {
-        return "images/depositphotos_15310413-stock-photo-sunset-with-sun-rays.jpg";
-    } 
-    // 45, 48: Туман
-    else if (weatherCode === 45 || weatherCode === 48) {
-        return "images/2239443.jpg";
-    }
-    // 1, 2, 3: Хмарно (Мінлива хмарність)
-    else if (weatherCode > 0 && weatherCode <= 3) {
-        return "images/49_main-v1677381250.jpg";
-    } 
-    // 95, 96, 99: Гроза
-    else if (weatherCode >= 95) {
-        return "images/28797b40-87d2-4adf-87ea-868a8a4fd8af.jpg";
-    }
-    // 71-77, 85, 86: Сніг або Град
-    else if ((weatherCode >= 71 && weatherCode <= 77) || weatherCode === 85 || weatherCode === 86) {
-        return "images/hailstorms.jpg";
-    }
-    // 51-67, 80-82: Дощ (Мряка, злива)
-    else if (weatherCode >= 51) {
-        return "images/189.jpg";
-    } 
-    // Резервний фон (Хмари)
-    else {
-        return "images/49_main-v1677381250.jpg"; 
+function getBackgroundImage(temp) {
+    if (temp <= -20) {
+        return "images/менше -20.jpg";
+    } else if (temp > -20 && temp <= 0) {
+        return "images/-20 - 0.jpg"; 
+    } else if (temp > 0 && temp <= 10) {
+        return "images/0 - +10.jpg";
+    } else if (temp > 10 && temp <= 20) {
+        return "images/+10 - +20.jpg"; 
+    } else if (temp > 20) {
+        return "images/більше +20.jpg"; 
+    } else {
+        return "https://investor-ua.com/wp-content/uploads/2021/01/pogoda562-668x668.jpg"; 
     }
 }
 
@@ -46,11 +31,8 @@ function setResult(weather, cityData) {
     const feelsLike = Math.round(weather.current.apparent_temperature);
     const humidity = weather.current.relative_humidity_2m;
     const wind = weather.current.wind_speed_10m;
-    console.log(weather)
-    const weatherCode = weather.current.weather_code;
 
-
-    const bgImage = getBackgroundImage(weatherCode);
+    const bgImage = getBackgroundImage(temp);
 
     resultDiv.innerHTML = `
         <h2 class="city-name">${cityData.name}, ${cityData.country}</h2>

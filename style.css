@@ -21,7 +21,8 @@ header {
     width: 100%;
     padding: 20px;
     display: flex;
-    justify-content: flex-end; /* Pushes icon to the right */
+    align-items: center;
+    justify-content: space-around; /* Pushes icon to the right */
     box-sizing: border-box;
 }
 
@@ -193,4 +194,100 @@ main {
 
 .history-item {
     font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 10px;
+}
+
+nav a {
+  background-color: #00218b;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 10px;
+  display: flex;
+  text-align: center;
+}
+
+a:hover {
+  background-color: #0400ff;
+  color: #daf6ff;
+}
+
+.history-container {
+    width: 100%;
+    max-width: 600px;
+    background: linear-gradient(135deg, #6bc0ff, #298bed);
+    border-radius: 40px;
+    padding: 30px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.history-container h2 {
+    margin-bottom: 25px;
+    font-weight: 500;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+/* --- Список елементів --- */
+#history-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+/* --- Картка міста в історії --- */
+.history-item {
+    background: #e0e0e0;
+    padding: 15px 25px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    border: 2px solid #b0bec5;
+    box-shadow: 0 5px 0px #8b8b8b, 0 10px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.history-item:hover {
+    transform: translateY(-2px);
+}
+
+.history-city {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.history-temp {
+    background: #388ced;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+/* --- Кнопка назад --- */
+.back-btn {
+    text-decoration: none;
+    background: #0d47a1;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 500;
+    box-shadow: 0 5px 0px #062a61, 0 10px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.back-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0px #062a61;
 }
