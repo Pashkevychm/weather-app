@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Історія пошуку</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Історія</h1>
+    </header>
+    <main>
+        <a href="index.html" class="back-btn">⬅ Назад</a>
+        <div class="history-container" id="history-list">
+            </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const historyList = document.getElementById("history-list");
+            const historyData = JSON.parse(localStorage.getItem("weatherHistory")) || [];
+
+            if (historyData.length === 0) {
+                historyList.innerHTML = "<p style='text-align:center;'>Історія порожня.</p>";
+                return;
+            }
+
+            historyList.innerHTML = historyData.map(item => {
+                const temp = Math.round(item.weather.current.temperature_2m);
+                return `
+                    <div class="history-item">
+                        <span><strong>${item.cityData.name}</strong>, ${item.cityData.country}</span>
+                        <span class="history-temp">${temp}°C</span>
+                    </div>
+                `;
+            }).join("");
+        });
+    </script>
 </body>
 </html>

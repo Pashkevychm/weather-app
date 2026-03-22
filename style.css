@@ -190,3 +190,7 @@ main {
 .weather-details p strong {
     font-weight: 500;
 }
+
+.history-item {
+    font-weight: bold;
+}
